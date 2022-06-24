@@ -6,3 +6,15 @@
 doom sync
 #+end_src
 + then restart emacs and emacs daemon if its running.
+
+* Install deps
++ for python devs I recommend to install anaconda and add src_shell[:exports code]{anaconda3/bin} to your PATH
+install rustup:
+#+begin_src shell
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+#+end_src
+
+install pkgs:
+#+begin_src shell
+sudo pacman -S typescript typescript-language-server python3 python-pip rust-analyzer
+#+end_src

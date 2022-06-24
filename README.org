@@ -8,7 +8,7 @@ doom sync
 + then restart emacs and emacs daemon if its running.
 
 * Install deps
-+ for python devs I recommend to install anaconda and add src_sh[:exports code]{anaconda3/bin} to your PATH
++ for python devs I recommend to install anaconda and add ~anaconda3/bin~ to your PATH
 install rustup:
 #+begin_src shell
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh

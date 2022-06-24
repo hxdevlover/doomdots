@@ -1,0 +1,8 @@
+#+title: How To install
+
+* After install doom emacs
++ once you installed doom emacs, add doom to your PATH and run:
+#+begin_src shell
+doom sync
+#+end_src
++ then restart emacs and emacs daemon if its running.

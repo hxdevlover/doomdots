@@ -3,8 +3,8 @@
 #+auto_tangle: nil
 
 * TABLE OF CONTENT :toc:
-- [[#configure-lsp-important][Configure lsp (Important)]]
 - [[#install-doom-emacs][Install Doom Emacs]]
+- [[#configure-lsp-important][Configure lsp (Important)]]
 - [[#notes][NOTES]]
 - [[#install-dev-tools-for-doom-emacs][Install dev tools for Doom Emacs]]
   - [[#python][Python]]
@@ -14,6 +14,9 @@
   - [[#typescript--javascript][Typescript & Javascript]]
   - [[#shell-scripting][Shell Scripting]]
 
+* Install Doom Emacs
+Just Follow This Tutorial: https://youtu.be/37H7bD-G7nE
++ if you use lightdm, you can autostart emacs by adding ~/usr/bin/emacs --daemon~ to ~.xprofile~
 * Configure lsp (Important)
 1. install npm, nodejs and typescript
    #+begin_src shell
@@ -31,9 +34,6 @@ sudo pacman -Sy npm nodejs typescript
    #+begin_src emacs-lisp
 M-x lsp-workspace-folders-add
    #+end_src
-* Install Doom Emacs
-Just Follow This Tutorial: https://youtu.be/37H7bD-G7nE
-+ if you use lightdm, you can autostart emacs by adding ~/usr/bin/emacs --daemon~ to ~.xprofile~
 * NOTES
 + RET == Return/Enter key
 + M-x == alt + x

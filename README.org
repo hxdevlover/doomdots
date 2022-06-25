@@ -1,12 +1,12 @@
-#+title: How To Configure Doom Emacs (ARCH)
+#+title: How To Configure Doom Emacs (Arch)
 #+AUTHOR: Hossein Khosravi
 #+auto_tangle: nil
 
 * TABLE OF CONTENT :toc:
+- [[#configure-lsp-important][Configure lsp (Important)]]
 - [[#install-doom-emacs][Install Doom Emacs]]
 - [[#notes][NOTES]]
 - [[#install-dev-tools-for-doom-emacs][Install dev tools for Doom Emacs]]
-  - [[#configure-lsp][Configure lsp]]
   - [[#python][Python]]
   - [[#rust][Rust]]
   - [[#go][Go]]
@@ -14,15 +14,7 @@
   - [[#typescript--javascript][Typescript & Javascript]]
   - [[#shell-scripting][Shell Scripting]]
 
-* Install Doom Emacs
-Just Follow This Tutorial: https://youtu.be/37H7bD-G7nE
-+ if you use lightdm, you can autostart emacs by adding ~/usr/bin/emacs --daemon~ to ~.xprofile~
-* NOTES
-+ RET == Return/Enter key
-+ M-x == alt + x
-+ M-x ... RET ... RET == (alt + x) ... (Enter) ... (Enter)
-* Install dev tools for Doom Emacs
-** Configure lsp
+* Configure lsp (Important)
 1. install npm, nodejs and typescript
    #+begin_src shell
 sudo pacman -Sy npm nodejs typescript
@@ -39,6 +31,14 @@ sudo pacman -Sy npm nodejs typescript
    #+begin_src emacs-lisp
 M-x lsp-workspace-folders-add
    #+end_src
+* Install Doom Emacs
+Just Follow This Tutorial: https://youtu.be/37H7bD-G7nE
++ if you use lightdm, you can autostart emacs by adding ~/usr/bin/emacs --daemon~ to ~.xprofile~
+* NOTES
++ RET == Return/Enter key
++ M-x == alt + x
++ M-x ... RET ... RET == (alt + x) ... (Enter) ... (Enter)
+* Install dev tools for Doom Emacs
 ** Python
 1. install python (it's better to install anaconda):
    #+begin_src shell

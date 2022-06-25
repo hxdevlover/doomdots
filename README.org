@@ -16,5 +16,5 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 install pkgs:
 #+begin_src shell
-sudo pacman -S typescript typescript-language-server python3 python-pip rust-analyzer
+sudo pacman -S typescript typescript-language-server python3 python-pip rust-analyzer npm vscode-css-languageserver vscode-html-languageserver
 #+end_src

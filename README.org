@@ -1,6 +1,7 @@
 #+title: How To Configure Doom Emacs
 #+auto_tangle: nil
 * TABLE OF CONTENT :toc:
+- [[#install-doom-emacs][Install Doom Emacs]]
 - [[#notes][NOTES]]
 - [[#install-dev-tools-for-doom-emacs][Install dev tools for Doom Emacs]]
   - [[#configure-lsp][Configure lsp]]
@@ -11,6 +12,9 @@
   - [[#typescript--javascript][Typescript & Javascript]]
   - [[#shell-scripting][Shell Scripting]]
 
+* Install Doom Emacs
+Just Follow This Tutorial: https://youtu.be/37H7bD-G7nE
++ if you use lightdm, you can autostart emacs by adding ~/usr/bin/emacs --daemon~ to ~.xprofile~
 * NOTES
 + RET == Return/Enter key
 + M-x == alt + x

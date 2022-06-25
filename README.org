@@ -46,8 +46,8 @@ sudo pacman -S python python-pip pyright
    #+end_src
    - if you installed anaconda, add it to emacs PATH:
       #+begin_src emacs-lisp
-(setenv "PATH" (concat (getenv "PATH") ":$HOME/anaconda3/bin"))
-(setq exec-path (append exec-path '("$HOME/anaconda3/bin")))
+(setenv "PATH" (concat (getenv "PATH") ":~/anaconda3/bin"))
+(setq exec-path (append exec-path '("~/anaconda3/bin")))
       #+end_src
 2. uncomment this line in ~.doom.d/init.el~:
    #+begin_src emacs-lisp
@@ -130,8 +130,8 @@ go install golang.org/x/tools/gopls@latest
    #+end_src
 4. add gopls to doom emacs PATH (add these lines to config.el in ~.doom.d/config.el~):
   #+begin_src emacs-lisp
-(setenv "PATH" (concat (getenv "PATH") ":$HOME/go/bin"))
-(setq exec-path (append exec-path '("$HOME/go/bin")))
+(setenv "PATH" (concat (getenv "PATH") ":~/go/bin"))
+(setq exec-path (append exec-path '("~/go/bin")))
   #+end_src
 5. then reload doom emacs:
    #+begin_src emacs-lisp

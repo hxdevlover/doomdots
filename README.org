@@ -1,4 +1,4 @@
-#+title: How To Configure Doom Emacs
+#+title: How To Configure Doom Emacs (ARCH)
 #+AUTHOR: Hossein Khosravi
 #+auto_tangle: nil
 

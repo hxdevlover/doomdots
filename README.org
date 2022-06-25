@@ -1,5 +1,7 @@
 #+title: How To Configure Doom Emacs
+#+AUTHOR: Hossein Khosravi
 #+auto_tangle: nil
+
 * TABLE OF CONTENT :toc:
 - [[#install-doom-emacs][Install Doom Emacs]]
 - [[#notes][NOTES]]
@@ -138,7 +140,7 @@ M-x doom/reload
 ** HTML & CSS
 1. install needed packages
    #+begin_src shell
-sudo pacman vscode-css-languageserver vscode-html-languageserver
+sudo pacman -S vscode-css-languageserver vscode-html-languageserver
    #+end_src
 2. uncomment this line in ~.doom.d/init.el~:
    #+begin_src emacs-lisp

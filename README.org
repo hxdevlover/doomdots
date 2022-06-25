@@ -1,25 +1,228 @@
-#+title: How To install
+#+title: How To Configure Doom Emacs
+#+auto_tangle: nil
+* TABLE OF CONTENT :toc:
+- [[#notes][NOTES]]
+- [[#install-dev-tools-for-doom-emacs][Install dev tools for Doom Emacs]]
+  - [[#configure-lsp][Configure lsp]]
+  - [[#python][Python]]
+  - [[#rust][Rust]]
+  - [[#go][Go]]
+  - [[#html--css][HTML & CSS]]
+  - [[#typescript--javascript][Typescript & Javascript]]
+  - [[#shell-scripting][Shell Scripting]]
 
-* After install doom emacs
-+ once you installed doom emacs, add doom to your PATH and run:
-#+begin_src shell
-doom sync
-#+end_src
-+ then restart emacs and emacs daemon if its running.
-
-* Install deps
-+ for python devs I recommend to install anaconda and add ~anaconda3/bin~ to your PATH
-install rustup:
-#+begin_src shell
+* NOTES
++ RET == Return/Enter key
++ M-x == alt + x
++ M-x ... RET ... RET == (alt + x) ... (Enter) ... (Enter)
+* Install dev tools for Doom Emacs
+** Configure lsp
+1. install npm, nodejs and typescript
+   #+begin_src shell
+sudo pacman -Sy npm nodejs typescript
+   #+end_src
+2. add these lines to ~.doom.d/config.el~:
+   #+begin_src emacs-lisp
+(use-package lsp
+  :init
+  (setq lsp-modeline-diagnostics-scope :workspace)
+  (setq lsp-enable-file-watchers nil)
+  (setq lsp-file-watch-threshold 10))
+   #+end_src
+3. make a folder for your projects and add it to lsp workspaces:
+   #+begin_src emacs-lisp
+M-x lsp-workspace-folders-add
+   #+end_src
+** Python
+1. install python (it's better to install anaconda):
+   #+begin_src shell
+sudo pacman -S python python-pip pyright
+   #+end_src
+   - if you installed anaconda, add it to emacs PATH:
+      #+begin_src emacs-lisp
+(setenv "PATH" (concat (getenv "PATH") ":$HOME/anaconda3/bin"))
+(setq exec-path (append exec-path '("$HOME/anaconda3/bin")))
+      #+end_src
+2. uncomment this line in ~.doom.d/init.el~:
+   #+begin_src emacs-lisp
+;;python
+   #+end_src
+3. add this line to ~.doom.d/packages.el~:
+   #+begin_src emacs-lisp
+(package! lsp-pyright)
+   #+end_src
+   + then reload doom emacs:
+     #+begin_src emacs-lisp
+M-x doom/reload
+     #+end_src
+4. add these lines to ~.doom.d/config.el~ (I use anaconda):
+   #+begin_src emacs-lisp
+(use-package lsp-pyright
+  :ensure t
+  :config
+  (setq lsp-pyright-python-path "$HOME/anaconda3/bin/python3")
+  (setq lsp-pyright-auto-search-paths t)
+  (setq lsp-pyright-use-library-code-for-types t)
+  (setq lsp-pyright-stub-path (concat (getenv "HOME") "/anaconda3/lib/python3.9/site-packages/mypy/typeshed/stubs"))
+  (setq lsp-pyright-open-files-only t)
+  :hook (python-mode . (lambda ()
+                          (require 'lsp-pyright)
+                          (lsp))))
+   #+end_src
+5. add your workspace to lsp:
+   #+begin_src emacs-lisp
+M-x lsp-workspace-folders-add
+   #+end_src
+   + then reload doom emacs:
+     #+begin_src emacs-lisp
+M-x doom/reload
+     #+end_src
+** Rust
+1. install rustup:
+  #+begin_src shell
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-#+end_src
-
-install pkgs:
-#+begin_src shell
-sudo pacman -S typescript typescript-language-server python3 python-pip rust-analyzer npm vscode-css-languageserver vscode-html-languageserver go
-#+end_src
-
-install gopls (go language server):
-#+begin_src shell
+  #+end_src
+2. install rust-analyzer (rust language server):
+  #+begin_src shell
+sudo pacman -Sy rust-analyzer
+  #+end_src
+3. install rustic using MELPA (add these lines to packages.el in ~.doom.d/packages.el~):
+  #+begin_src emacs-lisp
+(package! rustic)
+(package! rust-mode)
+  #+end_src
+4. uncomment this line in ~.doom.d/init.el~:
+   #+begin_src emacs-lisp
+;;rust
+   #+end_src
+5. add these lines to your config.el in ~.doom.d/config.el~:
+  #+begin_src emacs-lisp
+;; Rust Setup
+(use-package rustic
+  :ensure t
+  :mode "//.rs//'"
+  :config
+  (setq lsp-rust-server 'rust-analyzer)
+  :hook (rustic . lsp))
+  #+end_src
+6. then reload doom emacs:
+  #+begin_src shell
+M-x doom/reload
+  #+end_src
+** Go
+1. install golang
+  #+begin_src shell
+sudo pacman -Sy go
+  #+end_src
+2. install gopls (go language server):
+  #+begin_src shell
 go install golang.org/x/tools/gopls@latest
+  #+end_src
+3. uncomment this line in ~.doom.d/init.el~:
+   #+begin_src emacs-lisp
+;;(go +lsp)
+   #+end_src
+4. add gopls to doom emacs PATH (add these lines to config.el in ~.doom.d/config.el~):
+  #+begin_src emacs-lisp
+(setenv "PATH" (concat (getenv "PATH") ":$HOME/go/bin"))
+(setq exec-path (append exec-path '("$HOME/go/bin")))
+  #+end_src
+5. then reload doom emacs:
+   #+begin_src emacs-lisp
+M-x doom/reload
+   #+end_src
+** HTML & CSS
+1. install needed packages
+   #+begin_src shell
+sudo pacman vscode-css-languageserver vscode-html-languageserver
+   #+end_src
+2. uncomment this line in ~.doom.d/init.el~:
+   #+begin_src emacs-lisp
+;;web
+   #+end_src
+3. install ~css-ls~ and ~html-ls~:
+   #+begin_src emacs-lisp
+M-x RET lsp-install-server RET css-ls RET
+M-x RET lsp-install-server RET html-ls RET
+   #+end_src
+4. add these lines to ~.doom.d/config.el~:
+   #+begin_src emacs-lisp
+;; HTML
+(use-package web-mode
+  :ensure t
+  :config
+  (setq lsp-html-auto-closing-tags t)
+  (setq lsp-html-format-enable t)
+  (setq web-mode-enable-css-colorization t)
+  :hook (web-mode . (lambda ()
+                      (require 'lsp-css)
+                      (require 'lsp-html)
+                      (lsp))))
+
+;; CSS
+(use-package css-mode
+ :ensure t
+ :mode "//.css//'"
+ :hook (css-mode . (lambda ()
+                    (require 'lsp-css)
+                    (lsp))))
+   #+end_src
+5. then reload doom emacs:
+   #+begin_src emacs-lisp
+M-x doom/reload
+   #+end_src
+** Typescript & Javascript
+1. install language-servers:
+   #+begin_src shell
+sudo pacman -S typescript nodejs typescript-language-server
+   #+end_src
+2. uncomment this line in ~.doom.d/init.el~:
+   #+begin_src emacs-lisp
+;;javascript
+   #+end_src
+3. install ~ts-ls~:
+   #+begin_src emacs-lisp
+M-x lsp-install-server RET ts-ls RET
+   #+end_src
+4. add these lines to ~.doom.d/config.el~:
+   #+begin_src emacs-lisp
+;; typescript and javascript config
+(use-package typescript-mode
+  :mode "//.ts//'"
+  :hook (typescript-mode . lsp)
+  :config
+  (setq typescript-indent-level 2))
+   #+end_src
+5. then reload doom emacs:
+   #+begin_src emacs-lisp
+M-x doom/reload
+   #+end_src
+*** Javascript NOTE
+You should activate typescript-mode manually when you want to edit a .js file:
+#+begin_src emacs-lisp
+M-x typescript-mode RET
 #+end_src
+** Shell Scripting
+1. install bash-language-server
+   #+begin_src shell
+sudo pacman -S bash-language-server
+   #+end_src
+2. install ~bash-ls~:
+   #+begin_src emacs-lisp
+M-x lsp-install-server RET bash-ls
+   #+end_src
+3. add these lines to ~.doom.d/config.el~:
+   #+begin_src emacs-lisp
+;; SHELL
+(use-package sh-mode
+  :ensure t
+  :mode "//.sh//'"
+  :hook (sh-mode . (lambda()
+                     (require 'lsp-bash)
+                     (lsp))))
+   #+end_src
+4. then reload doom emacs:
+   #+begin_src emacs-lisp
+M-x doom/reload
+   #+end_src
+

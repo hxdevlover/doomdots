@@ -52,5 +52,5 @@
   :config
   (setq lsp-rust-server 'rust-analyzer)
   :hook (rustic .(lambda()
-					  (require 'rust-analyzer)
-					  (lsp))))
+                    (require 'rust-analyzer)
+		    (lsp))))

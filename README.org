@@ -66,7 +66,7 @@ M-x doom/reload
 (use-package lsp-pyright
   :ensure t
   :config
-  (setq lsp-pyright-python-path "$HOME/anaconda3/bin/python3")
+  (setq lsp-pyright-python-path (concat (getenv "HOME") "/anaconda3/bin"))
   (setq lsp-pyright-auto-search-paths t)
   (setq lsp-pyright-use-library-code-for-types t)
   (setq lsp-pyright-stub-path (concat (getenv "HOME") "/anaconda3/lib/python3.9/site-packages/mypy/typeshed/stubs"))
@@ -204,7 +204,7 @@ M-x lsp-install-server RET ts-ls RET
 M-x doom/reload
    #+end_src
 *** Javascript NOTE
-You should activate typescript-mode manually when you want to edit a .js file:
+You should activate typescript-mode manually when you want to edit a ~.js~ file:
 #+begin_src emacs-lisp
 M-x typescript-mode RET
 #+end_src

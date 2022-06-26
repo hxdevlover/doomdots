@@ -34,7 +34,7 @@
 ;; `load-theme' function. This is the default:
 
 ;;(setq doom-theme 'doom-one)
-(setq doom-theme 'doom-molokai)
+(setq doom-theme 'doom-vibrant)
 (setq doom-font (font-spec :family "JetBrains Mono" :size 15 :weight 'Regular)
       doom-variable-pitch-font (font-spec :family "Ubuntu" :size 16 :weight 'Regular))
 
@@ -78,3 +78,9 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+(setenv "PATH" (concat (getenv "PATH") ":~/go/bin"))
+(setq exec-path (append exec-path '("~/go/bin")))
+
+(setenv "PATH" (concat (getenv "PATH") ":~/anaconda3/bin"))
+(setq exec-path (append exec-path '("~/anaconda3/bin")))

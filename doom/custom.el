@@ -13,28 +13,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- 
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- 
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
-
 ;; lsp config
 (use-package lsp
-  :hook
-  ((python-mode . lsp))
-  ((typescript-mode . lsp))
-  ((rustic . lsp))
-  ((html-mode . lsp))
   :init
   (setq lsp-modeline-diagnostics-scope :workspace)
   (setq lsp-enable-file-watchers nil)
@@ -51,10 +31,9 @@
 (use-package lsp-pyright
   :ensure t
   :config
-  (setq lsp-pyright-python-path "/home/hx/anaconda3/bin")
+  (setq lsp-pyright-python-path "/home/hx/anaconda3/bin/python3")
   (setq lsp-pyright-auto-search-paths t)
   (setq lsp-pyright-use-library-code-for-types t)
-  ;;(setq lsp-pyright-stub-path (concat (getenv "HOME") "/src/mypy/stubs"))
   (setq lsp-pyright-stub-path (concat (getenv "HOME") "/anaconda3/lib/python3.9/site-packages/mypy/typeshed/stubs"))
   (setq lsp-pyright-open-files-only t)
   :hook (python-mode . (lambda ()
@@ -80,17 +59,27 @@
 ;; HTML
 (use-package web-mode
   :ensure t
-  :mode "//.html//'"
   :config
   (setq lsp-html-auto-closing-tags t)
   (setq lsp-html-format-enable t)
+  (setq web-mode-enable-css-colorization t)
   :hook (web-mode . (lambda ()
+                      (require 'lsp-css)
                       (require 'lsp-html)
                       (lsp))))
 
+;; CSS Mode
 (use-package css-mode
+ :ensure t
+ :mode "//.css//'"
+ :hook (css-mode . (lambda ()
+                    (require 'lsp-css)
+                    (lsp))))
+
+;; SHELL
+(use-package sh-mode
   :ensure t
-  :mode "//.css//'"
-  :hook (css-mode . (lambda ()
-                      (require 'lsp-css)
-                      (lsp))))
+  :mode "//.sh//'"
+  :hook (sh-mode . (lambda()
+                     (require 'lsp-bash)
+                     (lsp))))

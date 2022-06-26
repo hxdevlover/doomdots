@@ -1,7 +1,7 @@
 #+title: How To Configure Doom Emacs (Arch)
 #+AUTHOR: Hossein Khosravi
 #+auto_tangle: nil
-
+[[https://github.com/hxdevlover/DoomEmacsDots/blob/main/2022-06-26_12-19.png]]
 * TABLE OF CONTENT :toc:
 - [[#install-doom-emacs][Install Doom Emacs]]
 - [[#configure-lsp-important][Configure lsp (Important)]]

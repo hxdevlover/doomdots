@@ -97,11 +97,7 @@ sudo pacman -Sy rust-analyzer
 (package! rustic)
 (package! rust-mode)
   #+end_src
-4. uncomment this line in ~.doom.d/init.el~:
-   #+begin_src emacs-lisp
-;;rust
-   #+end_src
-5. add these lines to your config.el in ~.doom.d/config.el~:
+4. add these lines to your config.el in ~.doom.d/config.el~:
   #+begin_src emacs-lisp
 ;; Rust Setup
 (use-package rustic
@@ -111,7 +107,7 @@ sudo pacman -Sy rust-analyzer
   (setq lsp-rust-server 'rust-analyzer)
   :hook (rustic . lsp))
   #+end_src
-6. then reload doom emacs:
+5. then reload doom emacs:
   #+begin_src shell
 M-x doom/reload
   #+end_src

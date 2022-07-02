@@ -46,7 +46,7 @@ M-x lsp-workspace-folders-add
    #+begin_src shell
 sudo pacman -S python python-pip pyright
    #+end_src
-   - if you installed anaconda, add it to emacs PATH (It's better ro write the full path with ~/home/USER/~):
+   - if you installed anaconda, add it to emacs PATH (It's better to write the full path with ~/home/USER/~):
       #+begin_src emacs-lisp
 (setenv "PATH" (concat (getenv "PATH") ":~/anaconda3/bin"))
 (setq exec-path (append exec-path '("~/anaconda3/bin")))
@@ -77,7 +77,7 @@ M-x doom/reload
                           (require 'lsp-pyright)
                           (lsp))))
    #+end_src
-5. add your workspace to lsp:
+5. add your workspace (Projects Folder) to lsp:
    #+begin_src emacs-lisp
 M-x lsp-workspace-folders-add
    #+end_src
@@ -99,7 +99,7 @@ sudo pacman -Sy rust-analyzer
 (package! rustic)
 (package! rust-mode)
   #+end_src
-4. add these lines to your config.el in ~.doom.d/config.el~:
+4. add these lines to ~.doom.d/config.el~:
   #+begin_src emacs-lisp
 ;; Rust Setup
 (use-package rustic
@@ -127,7 +127,7 @@ go install golang.org/x/tools/gopls@latest
 ;;(go +lsp)
    #+end_src
 4. add gopls to doom emacs PATH (add these lines to config.el in ~.doom.d/config.el~):
-   + (It's better ro write the full path without ~~/~)
+   + (It's better to write the full path with ~/home/USER/~)
   #+begin_src emacs-lisp
 (setenv "PATH" (concat (getenv "PATH") ":~/go/bin"))
 (setq exec-path (append exec-path '("~/go/bin")))
@@ -232,8 +232,8 @@ M-x doom/reload
    #+end_src
 
 ** Haskell (HLS)
-1. Install ghcup and hls (Haskell-Language-Server):
-   - NOTE: When it asks to install hsl, confirm it.
+1. Install ghcup and HLS (Haskell-Language-Server):
+   - NOTE: When it asks to install HSL, confirm it.
    #+begin_src shell
 curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
    #+end_src
@@ -241,7 +241,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
    #+begin_src shell
 fish_add_path $HOME/.ghcup/bin
    #+end_src
-   + Add ghcup to doom emacs PATH (It's better ro write the full path with ~/home/USER/~):
+   + Add ghcup to doom emacs PATH (It's better to write the full path with ~/home/USER/~):
    #+begin_src emacs-lisp
 (setenv "PATH" (concat (getenv "PATH") ":~/.ghcup/bin"))
 (setq exec-path (append exec-path '("~/.ghcup/bin")))

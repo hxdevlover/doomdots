@@ -34,6 +34,11 @@
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-molokai)
 
+;; Remove Dashboard useless menu
+(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
+(add-hook! '+doom-dashboard-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
+(setq-hook! '+doom-dashboard-mode-hook evil-normal-state-cursor (list nil))
+
 ;; Set Fonts
 (setq doom-font (font-spec :family "Mononoki" :size 18 :weight 'Regular)
       doom-variable-pitch-font (font-spec :family "Ubuntu" :size 16 :weight 'Regular))

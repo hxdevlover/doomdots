@@ -46,7 +46,7 @@ M-x lsp-workspace-folders-add
    #+begin_src shell
 sudo pacman -S python python-pip pyright
    #+end_src
-   - if you installed anaconda, add it to emacs PATH (It's better ro write the full path without ~~/~):
+   - if you installed anaconda, add it to emacs PATH (It's better ro write the full path with ~/home/USER/~):
       #+begin_src emacs-lisp
 (setenv "PATH" (concat (getenv "PATH") ":~/anaconda3/bin"))
 (setq exec-path (append exec-path '("~/anaconda3/bin")))
@@ -241,7 +241,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
    #+begin_src shell
 fish_add_path $HOME/.ghcup/bin
    #+end_src
-   + Add ghcup to doom emacs PATH (It's better ro write the full path without ~~/~):
+   + Add ghcup to doom emacs PATH (It's better ro write the full path with ~/home/USER/~):
    #+begin_src emacs-lisp
 (setenv "PATH" (concat (getenv "PATH") ":~/.ghcup/bin"))
 (setq exec-path (append exec-path '("~/.ghcup/bin")))

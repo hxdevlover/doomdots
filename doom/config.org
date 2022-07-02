@@ -1,5 +1,5 @@
 #+title: Config.el
-#+auto-tangle: nil
+#+auto_tangle: nil
 #+AUTHOR: Hossein Khosravi
 
 * Use Custom Themes

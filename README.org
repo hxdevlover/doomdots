@@ -16,7 +16,7 @@
 
 * Install Doom Emacs
 Just Follow This Tutorial: https://youtu.be/37H7bD-G7nE
-+ if you use lightdm, you can autostart emacs by adding ~/usr/bin/emacs --daemon~ to ~.xprofile~
++ if you use lightdm, you can autostart emacs daemon by adding ~/usr/bin/emacs --daemon~ to ~.xprofile~
 * Configure lsp (Important)
 1. install npm, nodejs and typescript
    #+begin_src shell

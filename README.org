@@ -7,12 +7,13 @@
 - [[#configure-lsp-important][Configure lsp (Important)]]
 - [[#notes][NOTES]]
 - [[#install-dev-tools-for-doom-emacs][Install dev tools for Doom Emacs]]
-  - [[#python][Python]]
-  - [[#rust][Rust]]
-  - [[#go][Go]]
-  - [[#html--css][HTML & CSS]]
-  - [[#typescript--javascript][Typescript & Javascript]]
-  - [[#shell-scripting][Shell Scripting]]
+  - [[#python-pyright][Python (pyright)]]
+  - [[#rust-rust-analyzer][Rust (rust-analyzer)]]
+  - [[#go-gopls][Go (gopls)]]
+  - [[#html--css-lsp-htmlcss][HTML & CSS (lsp-html\css)]]
+  - [[#typescript--javascript-ts-ls][Typescript & Javascript (ts-ls)]]
+  - [[#shell-scripting-lsp-bash][Shell Scripting (lsp-bash)]]
+  - [[#haskell-hls][Haskell (HLS)]]
 
 * Install Doom Emacs
 Just Follow This Tutorial: https://youtu.be/37H7bD-G7nE
@@ -40,12 +41,12 @@ M-x lsp-workspace-folders-add
 + M-x == alt + x
 + M-x ... RET ... RET == (alt + x) ... (Enter) ... (Enter)
 * Install dev tools for Doom Emacs
-** Python
+** Python (pyright)
 1. install python (it's better to install anaconda):
    #+begin_src shell
 sudo pacman -S python python-pip pyright
    #+end_src
-   - if you installed anaconda, add it to emacs PATH:
+   - if you installed anaconda, add it to emacs PATH (It's better ro write the full path without ~~/~):
       #+begin_src emacs-lisp
 (setenv "PATH" (concat (getenv "PATH") ":~/anaconda3/bin"))
 (setq exec-path (append exec-path '("~/anaconda3/bin")))
@@ -84,7 +85,7 @@ M-x lsp-workspace-folders-add
      #+begin_src emacs-lisp
 M-x doom/reload
      #+end_src
-** Rust
+** Rust (rust-analyzer)
 1. install rustup:
   #+begin_src shell
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -112,7 +113,7 @@ sudo pacman -Sy rust-analyzer
   #+begin_src shell
 M-x doom/reload
   #+end_src
-** Go
+** Go (gopls)
 1. install golang
   #+begin_src shell
 sudo pacman -Sy go
@@ -126,6 +127,7 @@ go install golang.org/x/tools/gopls@latest
 ;;(go +lsp)
    #+end_src
 4. add gopls to doom emacs PATH (add these lines to config.el in ~.doom.d/config.el~):
+   + (It's better ro write the full path without ~~/~)
   #+begin_src emacs-lisp
 (setenv "PATH" (concat (getenv "PATH") ":~/go/bin"))
 (setq exec-path (append exec-path '("~/go/bin")))
@@ -134,7 +136,7 @@ go install golang.org/x/tools/gopls@latest
    #+begin_src emacs-lisp
 M-x doom/reload
    #+end_src
-** HTML & CSS
+** HTML & CSS (lsp-html\css)
 1. install needed packages
    #+begin_src shell
 sudo pacman -S vscode-css-languageserver vscode-html-languageserver
@@ -174,7 +176,7 @@ M-x RET lsp-install-server RET html-ls RET
    #+begin_src emacs-lisp
 M-x doom/reload
    #+end_src
-** Typescript & Javascript
+** Typescript & Javascript (ts-ls)
 1. install language-servers:
    #+begin_src shell
 sudo pacman -S typescript nodejs typescript-language-server
@@ -205,7 +207,7 @@ You should activate typescript-mode manually when you want to edit a ~.js~ file:
 #+begin_src emacs-lisp
 M-x typescript-mode RET
 #+end_src
-** Shell Scripting
+** Shell Scripting (lsp-bash)
 1. install bash-language-server
    #+begin_src shell
 sudo pacman -S bash-language-server
@@ -229,3 +231,41 @@ M-x lsp-install-server RET bash-ls
 M-x doom/reload
    #+end_src
 
+** Haskell (HLS)
+1. Install ghcup and hls (Haskell-Language-Server):
+   - NOTE: When it asks to install hsl, confirm it.
+   #+begin_src shell
+curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+   #+end_src
+   + Add ghcup to your shell and system PATH. For fish shell:
+   #+begin_src shell
+fish_add_path $HOME/.ghcup/bin
+   #+end_src
+   + Add ghcup to doom emacs PATH (It's better ro write the full path without ~~/~):
+   #+begin_src emacs-lisp
+(setenv "PATH" (concat (getenv "PATH") ":~/.ghcup/bin"))
+(setq exec-path (append exec-path '("~/.ghcup/bin")))
+   #+end_src
+2. Uncomment this line in ~.doom.d/init.el~:
+   #+begin_src emacs-lisp
+;;(haskell +lsp)
+   #+end_src
+3. Add this line to ~.doom.d/packages.el~:
+   #+begin_src emacs-lisp
+(package! haskell-mode)
+(package! lsp-haskell)
+   #+end_src
+4. Add these lines to ~.doom.d/config.el~:
+   #+begin_src emacs-lisp
+;; Haskell
+(use-package haskell-mode
+ :ensure t
+ :mode "//.hs//'"
+ :hook (haskell-mode . (lambda ()
+                    (require 'lsp-haskell)
+                    (lsp))))
+   #+end_src
+5. then reload doom emacs:
+   #+begin_src emacs-lisp
+M-x doom/reload
+   #+end_src

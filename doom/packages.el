@@ -49,8 +49,9 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 
-(package! evil-tutor)
+(package! org-auto-tangle)
 (package! lsp-pyright)
+(package! lsp-haskell)
+(package! haskell-mode)
 (package! rust-mode)
 (package! rustic)
-(package! org-auto-tangle)

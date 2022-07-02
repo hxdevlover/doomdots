@@ -32,10 +32,10 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
+(setq doom-theme 'doom-molokai)
 
-;;(setq doom-theme 'doom-one)
-(setq doom-theme 'doom-vibrant)
-(setq doom-font (font-spec :family "JetBrains Mono" :size 15 :weight 'Regular)
+;; Set Fonts
+(setq doom-font (font-spec :family "Mononoki" :size 18 :weight 'Regular)
       doom-variable-pitch-font (font-spec :family "Ubuntu" :size 16 :weight 'Regular))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
@@ -79,8 +79,87 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-(setenv "PATH" (concat (getenv "PATH") ":~/go/bin"))
-(setq exec-path (append exec-path '("~/go/bin")))
+;; LSP Configuration
+(use-package lsp
+  :init
+  (setq lsp-modeline-diagnostics-scope :workspace)
+  (setq lsp-enable-file-watchers nil)
+  (setq lsp-file-watch-threshold 10))
 
-(setenv "PATH" (concat (getenv "PATH") ":~/anaconda3/bin"))
-(setq exec-path (append exec-path '("~/anaconda3/bin")))
+;; Python (pyright and anaconda)
+(use-package lsp-pyright
+  :ensure t
+  :config
+  (setq lsp-pyright-python-path (concat (getenv "HOME") "/anaconda3/bin/python3"))
+  (setq lsp-pyright-auto-search-paths t)
+  (setq lsp-pyright-use-library-code-for-types t)
+  (setq lsp-pyright-stub-path (concat (getenv "HOME") "/anaconda3/lib/python3.9/site-packages/mypy/typeshed/stubs"))
+  (setq lsp-pyright-open-files-only t)
+  :hook (python-mode . (lambda ()
+                          (require 'lsp-pyright)
+                          (lsp))))
+
+;; Auto Tangle Mode (For org files)
+(use-package org-auto-tangle
+  :defer t
+  :hook (org-mode . org-auto-tangle-mode)
+  :config
+  (setq org-auto-tangle-default t))
+
+;; HTML
+(use-package web-mode
+  :ensure t
+  :config
+  (setq lsp-html-auto-closing-tags t)
+  (setq lsp-html-format-enable t)
+  (setq web-mode-enable-css-colorization t)
+  :hook (web-mode . (lambda ()
+                      (require 'lsp-css)
+                      (require 'lsp-html)
+                      (lsp))))
+
+;; CSS Mode
+(use-package css-mode
+ :ensure t
+ :mode "//.css//'"
+ :hook (css-mode . (lambda ()
+                    (require 'lsp-css)
+                    (lsp))))
+
+;; SHELL
+(use-package sh-mode
+  :ensure t
+  :mode "//.sh//'"
+  :hook (sh-mode . (lambda()
+                     (require 'lsp-bash)
+                     (lsp))))
+
+;; typescript and javascript
+(use-package typescript-mode
+  :mode "//.ts//'"
+  :hook (typescript-mode . lsp)
+  :config
+  (setq typescript-indent-level 2))
+
+;; Rust
+(use-package rustic
+  :ensure t
+  :mode "//.rs//'"
+  :config
+  (setq lsp-rust-server 'rust-analyzer)
+  :hook (rustic . lsp))
+
+;; Haskell
+(use-package haskell-mode
+ :ensure t
+ :mode "//.hs//'"
+ :hook (haskell-mode . (lambda ()
+                    (require 'lsp-haskell)
+                    (lsp))))
+
+;; Custom PATH
+(setenv "PATH" (concat (getenv "PATH") ":~/.ghcup/bin"))
+(setq exec-path (append exec-path '("~/.ghcup/bin")))
+
+(setenv "PATH" (concat (getenv "PATH") ":~/.cargo/bin"))
+(setq exec-path (append exec-path '("~/.cargo/bin")))

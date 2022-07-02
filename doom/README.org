@@ -1,0 +1,19 @@
+#+title: Config.el
+#+auto_tangle: nil
+#+AUTHOR: Hossein Khosravi
+
+* Use Custom Themes
++ This themes can be installed by uncommenting ~;;doom~ in ~.doom.d/init.el~ file. don't forget to reload doom emacs after saving ~init.el~ file. If it's already uncommented, themes are installed.
++ Use custom themes by adding this line to ~.doom.d/config.el~:
+  replace ~doom-molokai~ with any theme you want.
+#+begin_src emacs-lisp
+(setq doom-theme 'doom-molokai)
+#+end_src
++ Find more themes: https://github.com/doomemacs/themes
+
+* Custom Fonts
+#+begin_src emacs-lisp
+(setq doom-font (font-spec :family "Mononoki" :size 18 :weight 'Regular)
+      doom-variable-pitch-font (font-spec :family "Ubuntu" :size 16 :weight 'Regular))
+#+end_src
++ Install ~ttf-mononoki~ from aur. Or you can download ~.ttf~ files and put them in ~.local/share/fonts/~ directory. if you do that, run ~fc-cache~ to reload font cache.

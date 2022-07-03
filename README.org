@@ -65,6 +65,7 @@ echo "/usr/bin/emacs --daemon" >> ~/.xprofile
    + Or you can do that in this way instead:
      #+begin_src shell
 sudo touch /etc/profile.d/emacsclient.sh
+sudo echo "#! /bin/bash" >> /etc/profile.d/emacsclient.sh
 sudo echo "/usr/bin/emacs --daemon" >> /etc/profile.d/emacsclient.sh
 sudo chmod +x /etc/profile.d/emacsclient.sh
      #+end_src

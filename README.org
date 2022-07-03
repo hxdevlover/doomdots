@@ -67,7 +67,7 @@ funcsave emacs
 5. Start emacs daemon on startup to be able to start doom-emacs fast:
    #+begin_src shell
 touch $HOME/.xprofile
-echo "/usr/bin/emacs --daemon" >> ~/.xprofile
+echo "/usr/bin/emacs --daemon &" >> ~/.xprofile
    #+end_src
 
    + Or you can do that in this way instead:

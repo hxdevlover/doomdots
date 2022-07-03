@@ -52,7 +52,7 @@ Categories=Development;TextEditor;
 StartupNotify=true
 StartupWMClass=Emacs
      #+end_src
-4. Alias ~/usr/bin/eamcsclient -c -a 'emacs' ~ to ~emacs~. this will help launch doom emacs client through terminal. for example in fish shell:
+4. Create an alias to launch ~emacsclient~ through terminal. For example in fish shell:
    #+begin_src shell
 alias emacs "/usr/bin/eamcsclient -c -a 'emacs'"
 funcsave emacs

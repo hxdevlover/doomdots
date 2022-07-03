@@ -62,16 +62,20 @@ funcsave emacs
 touch $HOME/.xprofile
 echo "/usr/bin/emacs --daemon" >> ~/.xprofile
    #+end_src
+
    + Or you can do that in this way instead:
      #+begin_src shell
 sudo touch /etc/profile.d/emacsclient.sh
-sudo echo "#! /bin/bash" >> /etc/profile.d/emacsclient.sh
-sudo echo "/usr/bin/emacs --daemon" >> /etc/profile.d/emacsclient.sh
 sudo chmod +x /etc/profile.d/emacsclient.sh
      #+end_src
+   Then add these lines to it (~/etc/profile.d/emacsclient.sh~):
+   #+begin_src shell
+#! /bin/bash
+/usr/bin/emacs --daemon &
+   #+end_src
    + Logout and login and test that emacs daemon running or not. (It's better to restart)
 
-+ Done!
+6. Done!
 * Configure lsp (Important)
 1. install npm, nodejs and typescript
    #+begin_src shell

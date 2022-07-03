@@ -60,7 +60,7 @@ StartupWMClass=Emacs
 
 4. Create an alias to launch ~emacsclient~ through terminal. For example in fish shell:
    #+begin_src shell
-alias emacs "/usr/bin/eamcsclient -c -a 'emacs'"
+alias emacs "/usr/bin/emacsclient -c -a 'emacs'"
 funcsave emacs
    #+end_src
 

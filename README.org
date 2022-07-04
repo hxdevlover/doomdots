@@ -87,6 +87,7 @@ sudo chmod +x /etc/profile.d/emacsclient.sh
 /usr/bin/emacs --daemon &
      #+end_src
    + Logout and login and test that emacs daemon running or not. (It's better to restart)
+   + It's a good idea to restart your pc after installation process.
 
 7. Done!
 * Configure lsp (Important)

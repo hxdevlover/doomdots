@@ -111,9 +111,9 @@ M-x lsp-workspace-folders-add
    #+end_src
 
 * NOTES
-+ RET == Return/Enter key
-+ M-x == alt + x
-+ M-x ... RET ... RET == (alt + x) ... (Enter) ... (Enter)
++ ~RET~ = Enter key
++ ~M-x~ = ~alt~ + ~x~
++ ~M-x~ ... ~RET~ ... ~RET~ = ~(alt + x)~ ... ~(Enter)~ ... ~(Enter)~
 
 * Install dev tools for Doom Emacs
 ** Python (pyright)

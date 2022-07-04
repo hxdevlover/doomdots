@@ -4,8 +4,8 @@
 
 * TABLE OF CONTENT :toc:
 - [[#install-doom-emacs][Install Doom Emacs]]
-- [[#configure-lsp-important][Configure lsp (Important)]]
 - [[#notes][NOTES]]
+- [[#configure-lsp-important][Configure lsp (Important)]]
 - [[#install-dev-tools-for-doom-emacs][Install dev tools for Doom Emacs]]
   - [[#python-pyright][Python (pyright)]]
   - [[#rust-rust-analyzer][Rust (rust-analyzer)]]
@@ -90,6 +90,11 @@ sudo chmod +x /etc/profile.d/emacsclient.sh
    + It's a good idea to restart your pc after installation process.
 
 7. Done!
+* NOTES
++ ~RET~ = Enter key
++ ~M-x~ = ~alt~ + ~x~
++ ~M-x~ ... ~RET~ ... ~RET~ = ~alt + x~ ... ~Enter~ ... ~Enter~
+
 * Configure lsp (Important)
 1. install npm, nodejs and typescript
    #+begin_src shell
@@ -109,11 +114,6 @@ sudo pacman -Sy npm nodejs typescript
    #+begin_src emacs-lisp
 M-x lsp-workspace-folders-add
    #+end_src
-
-* NOTES
-+ ~RET~ = Enter key
-+ ~M-x~ = ~alt~ + ~x~
-+ ~M-x~ ... ~RET~ ... ~RET~ = ~(alt + x)~ ... ~(Enter)~ ... ~(Enter)~
 
 * Install dev tools for Doom Emacs
 ** Python (pyright)

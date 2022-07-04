@@ -32,7 +32,13 @@ git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 fish_add_path $HOME/.emacs.d/bin
      #+end_src
 
-3. Create a ~emacsclient.desktop~ file in ~/usr/share/applications/~ to be able to launch emacs client through a graphical menu or environment:
+3. Reload doom emacs:
+   #+begin_src shell
+~/.emacs.d/bin/doom sync
+   #+end_src
+   + If you added ~doom~ to your shell PATH, just run ~doom sync~.
+
+4. Create a ~emacsclient.desktop~ file in ~/usr/share/applications/~ to be able to launch emacs client through a graphical menu or environment:
    #+begin_src shell
 sudo touch /usr/share/applications/emacsclient.desktop
    #+end_src
@@ -58,13 +64,13 @@ StartupNotify=true
 StartupWMClass=Emacs
      #+end_src
 
-4. Create an alias to launch ~emacsclient~ through terminal. For example in fish shell:
+5. Create an alias to launch ~emacsclient~ through terminal. For example in fish shell:
    #+begin_src shell
 alias emacs "/usr/bin/emacsclient -c -a 'emacs'"
 funcsave emacs
    #+end_src
 
-5. Start emacs daemon on startup to be able to start doom-emacs fast:
+6. Start emacs daemon on startup to be able to start doom-emacs fast:
    #+begin_src shell
 touch $HOME/.xprofile
 echo "/usr/bin/emacs --daemon &" >> ~/.xprofile
@@ -82,7 +88,7 @@ sudo chmod +x /etc/profile.d/emacsclient.sh
      #+end_src
    + Logout and login and test that emacs daemon running or not. (It's better to restart)
 
-6. Done!
+7. Done!
 * Configure lsp (Important)
 1. install npm, nodejs and typescript
    #+begin_src shell

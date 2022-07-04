@@ -101,7 +101,21 @@ sudo chmod +x /etc/profile.d/emacsclient.sh
 sudo pacman -Sy npm nodejs typescript
    #+end_src
 
-2. add these lines to ~.doom.d/config.el~:
+2. Uncomment this line in ~.doom.d/init.el~ to install ~lsp~:
+   #+begin_src emacs-lisp
+;;lsp
+   #+end_src
+
+3. Reload doom emacs:
+   #+begin_src shell
+$HOME/.emacs.d/bin/doom sync
+   #+end_src
+   If you want to reload doom emacs directly from emacs:
+   #+begin_src emacs-lisp
+M-x doom/reload RET
+   #+end_src
+
+4. add these lines to ~.doom.d/config.el~:
    #+begin_src emacs-lisp
 (use-package lsp
   :init
@@ -110,7 +124,7 @@ sudo pacman -Sy npm nodejs typescript
   (setq lsp-file-watch-threshold 10))
    #+end_src
 
-3. make a folder for your projects and add it to lsp workspaces:
+5. make a folder for your projects and add it to lsp workspaces:
    #+begin_src emacs-lisp
 M-x lsp-workspace-folders-add
    #+end_src

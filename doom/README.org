@@ -17,3 +17,12 @@
       doom-variable-pitch-font (font-spec :family "Ubuntu" :size 16 :weight 'Regular))
 #+end_src
 + Install ~ttf-mononoki~ from aur. Or you can download ~.ttf~ files and put them in ~.local/share/fonts/~ directory. if you do that, run ~fc-cache~ to reload font cache.
+
+* Remove menu options form dashboard
+If you don't want menu options in dashboard (doom main buffer), remove them by adding these lines to ~.emacs.d/config.el~:
+#+begin_src emacs-lisp
+;; Remove Dashboard useless menu
+(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
+(add-hook! '+doom-dashboard-mode-hook (hide-mode-line-mode 1) (hl-line-mode -1))
+(setq-hook! '+doom-dashboard-mode-hook evil-normal-state-cursor (list nil))
+#+end_src

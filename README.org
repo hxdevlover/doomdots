@@ -18,7 +18,7 @@
 * Install Doom Emacs
 1. Install ~GNU/Emacs~
    #+begin_src shell
-sudo pacman -S emacs ripgrep fd vim git curl
+sudo pacman -S base-devel emacs ripgrep fd vim git curl
    #+end_src
 
 2. Install doom for emacs:

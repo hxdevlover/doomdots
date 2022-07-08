@@ -18,7 +18,7 @@
 * Install Doom Emacs
 1. Install ~GNU/Emacs~
    #+begin_src shell
-sudo pacman -S base-devel emacs ripgrep fd vim git curl unzip unrar p7zip
+sudo pacman -S --needed base-devel emacs ripgrep fd vim git curl unzip unrar p7zip gzip
    #+end_src
 
 2. Install doom for emacs:
@@ -194,21 +194,20 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 sudo pacman -Sy rust-analyzer
   #+end_src
 
-3. install rustic using MELPA (add these lines to packages.el in ~.doom.d/packages.el~):
+3. install rust-mode using MELPA (add these lines to packages.el in ~.doom.d/packages.el~):
   #+begin_src emacs-lisp
-(package! rustic)
 (package! rust-mode)
   #+end_src
 
 4. add these lines to ~.doom.d/config.el~:
   #+begin_src emacs-lisp
 ;; Rust Setup
-(use-package rustic
+(use-package rust-mode
   :ensure t
   :mode "//.rs//'"
   :config
   (setq lsp-rust-server 'rust-analyzer)
-  :hook (rustic . lsp))
+  :hook (rust-mode . lsp))
   #+end_src
 
 5. then reload doom emacs:

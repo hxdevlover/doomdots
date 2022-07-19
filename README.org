@@ -92,6 +92,7 @@ sudo chmod +x /etc/profile.d/emacsclient.sh
    + It's a good idea to restart your pc after installation process.
 
 7. Done!
+
 * NOTES
 + ~RET~ = Enter key
 + ~M-x~ = ~alt~ + ~x~

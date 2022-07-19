@@ -147,7 +147,7 @@ M-x doom/reload RET
 
 3. When Tree-Sitter installed, install programming languages for Tree-Sitter.
    #+begin_src emacs-lisp
-M-x tree-sitter!
+M-x tree-sitter! RET
    #+end_src
    This command will install all languages for Tree-sitter.
 
@@ -184,7 +184,7 @@ sudo pacman -S python python-pip pyright
 
    + then reload doom emacs:
      #+begin_src emacs-lisp
-M-x doom/reload
+M-x doom/reload RET
      #+end_src
 
 4. add these lines to ~.doom.d/config.el~ (I use anaconda):
@@ -233,7 +233,7 @@ sudo pacman -Sy rust-analyzer
   #+begin_src emacs-lisp
 ;; Rust Setup
 (use-package rust-mode
-  :ensure t
+  :ensure t ;; Make sure rust-mode package is installed.
   :mode "//.rs//'"
   :config
   (setq lsp-rust-server 'rust-analyzer)
@@ -263,16 +263,26 @@ go install golang.org/x/tools/gopls@latest
 ;;(go +lsp)
    #+end_src
 
-4. add gopls to doom emacs PATH (add these lines to config.el in ~.doom.d/config.el~):
-   + (It's better to write the full path with ~/home/USER/~)
-  #+begin_src emacs-lisp
-(setenv "PATH" (concat (getenv "PATH") ":~/go/bin"))
-(setq exec-path (append exec-path '("~/go/bin")))
-  #+end_src
-
-5. then reload doom emacs:
+4. Configure ~go-mode~ to use Tree-Sitter. Add these lines to ~.doom.d/config.el~:
    #+begin_src emacs-lisp
-M-x doom/reload
+(use-package go-mode
+  :ensure t
+  :mode "//.go//'"
+  :hook (go-mode . (lambda()
+                     (tree-sitter-mode)
+                     (lsp))))
+   #+end_src
+
+5. add gopls to doom emacs PATH (add these lines to ~.doom.d/config.el~):
+   + It's better to write the full path with ~/home/USER/~ instead of ~~/~
+     #+begin_src emacs-lisp
+   (setenv "PATH" (concat (getenv "PATH") ":~/go/bin"))
+   (setq exec-path (append exec-path '("~/go/bin")))
+     #+end_src
+
+6. then reload doom emacs:
+   #+begin_src emacs-lisp
+M-x doom/reload RET
    #+end_src
 
 ** HTML & CSS (lsp-html\css)
@@ -396,7 +406,7 @@ M-x doom/reload
 curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
    #+end_src
 
-   + Add ghcup to your shell and system PATH. For fish shell:
+   + Add ghcup to your shell PATH. For fish shell:
    #+begin_src shell
 fish_add_path $HOME/.ghcup/bin
    #+end_src
@@ -432,5 +442,5 @@ fish_add_path $HOME/.ghcup/bin
 
 5. then reload doom emacs:
    #+begin_src emacs-lisp
-M-x doom/reload
+M-x doom/reload RET
    #+end_src

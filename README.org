@@ -154,9 +154,9 @@ M-x tree-sitter!
    #+begin_src emacs-lisp
 (tree-sitter-mode 1)
    #+end_src
-   It's not a good way to enable it because ~Fundamental~ files are not supported by Tree-Sitter and each time you start doom emacs, you will get an error that says ~Fundamental~ files are not supported by Tree-Sitter. (~Fundamental~ files are those that not contain any language or emacs can't recognize it)
-   So, It's better to enable Tree-Sitter with each language-server. For example, Tree-Sitter only enables when a specific file extention opens. like ~.py~, ~.rs~ and etc...
-   We can do that by adding ~tree-sitter-mode~ to any language configration in ~.doom.d/config.el~.
+   + It's not a good way to enable it because ~Fundamental~ files are not supported by Tree-Sitter and each time you start doom emacs, you will get an error that says ~Fundamental~ files are not supported by Tree-Sitter. (~Fundamental~ files are those that not contain any language or emacs can't recognize it).
+   + So, It's better to enable Tree-Sitter with each language-server. For example, Tree-Sitter only enables when a specific file extention opens. like ~.py~, ~.rs~ and etc...
+   + We can do that by adding ~tree-sitter-mode~ to any language configration in ~.doom.d/config.el~.
 
 * Install dev tools for Doom Emacs
 ** Python (pyright)

@@ -6,6 +6,7 @@
 - [[#install-doom-emacs][Install Doom Emacs]]
 - [[#notes][NOTES]]
 - [[#configure-lsp-important][Configure lsp (Important)]]
+- [[#install-tree-sitter][Install Tree-Sitter]]
 - [[#install-dev-tools-for-doom-emacs][Install dev tools for Doom Emacs]]
   - [[#python-pyright][Python (pyright)]]
   - [[#rust-rust-analyzer][Rust (rust-analyzer)]]
@@ -130,6 +131,33 @@ M-x doom/reload RET
 M-x lsp-workspace-folders-add
    #+end_src
 
+* Install Tree-Sitter
+If you want better syntax hilighting, you should install Tree-Sitter for Doom Emacs.
+
+1. Uncomment This line in ~.doom.d/init.el~ file.
+   #+begin_src emacs-lisp
+;;tree-sitter
+   #+end_src
+
+2. Then reload Doom Emacs.
+   #+begin_src emacs-lisp
+M-x doom/reload RET
+   #+end_src
+
+3. When Tree-Sitter installed, install programming languages for Tree-Sitter.
+   #+begin_src emacs-lisp
+M-x tree-sitter!
+   #+end_src
+   This command will install all languages for Tree-sitter.
+
+4. To Enable Tree-Sitter globally, add this line to ~.doom.d/config.el~ file:
+   #+begin_src emacs-lisp
+(tree-sitter-mode 1)
+   #+end_src
+   It's not a good way to enable it because ~Fundamental~ files are not supported by Tree-Sitter and each time you start doom emacs, you will get an error that says ~Fundamental~ files are not supported by Tree-Sitter. (~Fundamental~ files are those that not contain any language or emacs can't recognize it)
+   So, It's better to enable Tree-Sitter with each language-server. For example, Tree-Sitter only enables when a specific file extention opens. like ~.py~, ~.rs~ and etc...
+   We can do that by adding ~tree-sitter-mode~ to any language configration in ~.doom.d/config.el~.
+
 * Install dev tools for Doom Emacs
 ** Python (pyright)
 1. install python (it's better to install anaconda):
@@ -170,6 +198,7 @@ M-x doom/reload
   (setq lsp-pyright-open-files-only t)
   :hook (python-mode . (lambda ()
                           (require 'lsp-pyright)
+                          (tree-sitter-mode)  ;; Enable tree-sitter for python. Comment this line if you don't use it.
                           (lsp))))
    #+end_src
 
@@ -207,7 +236,9 @@ sudo pacman -Sy rust-analyzer
   :mode "//.rs//'"
   :config
   (setq lsp-rust-server 'rust-analyzer)
-  :hook (rust-mode . lsp))
+  :hook (rust-mode . (lambda()
+                       (tree-sitter-mode) ;; Enable tree-sitter for python. Comment this line if you don't use it.
+                       (lsp))))
   #+end_src
 
 5. then reload doom emacs:
@@ -272,6 +303,7 @@ M-x RET lsp-install-server RET html-ls RET
   :hook (web-mode . (lambda ()
                       (require 'lsp-css)
                       (require 'lsp-html)
+                      (tree-sitter-mode) ;; Enable tree-sitter for python. Comment this line if you don't use it.
                       (lsp))))
 
 ;; CSS
@@ -280,6 +312,7 @@ M-x RET lsp-install-server RET html-ls RET
  :mode "//.css//'"
  :hook (css-mode . (lambda ()
                     (require 'lsp-css)
+                    (tree-sitter-mode) ;; Enable tree-sitter for python. Comment this line if you don't use it.
                     (lsp))))
    #+end_src
 
@@ -309,9 +342,11 @@ M-x lsp-install-server RET ts-ls RET
 ;; typescript and javascript config
 (use-package typescript-mode
   :mode "//.ts//'"
-  :hook (typescript-mode . lsp)
   :config
-  (setq typescript-indent-level 2))
+  (setq typescript-indent-level 2)
+  :hook (typescript-mode . (lambda ()
+                             (tree-sitter-mode) ;; Enable tree-sitter for python. Comment this line if you don't use it.
+                             (lsp))))
    #+end_src
 
 5. then reload doom emacs:
@@ -344,6 +379,7 @@ M-x lsp-install-server RET bash-ls
   :mode "//.sh//'"
   :hook (sh-mode . (lambda()
                      (require 'lsp-bash)
+                     (tree-sitter-mode)
                      (lsp))))
    #+end_src
 
@@ -389,6 +425,7 @@ fish_add_path $HOME/.ghcup/bin
  :mode "//.hs//'"
  :hook (haskell-mode . (lambda ()
                     (require 'lsp-haskell)
+                    (tree-sitter-mode)
                     (lsp))))
    #+end_src
 

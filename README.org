@@ -15,6 +15,7 @@
   - [[#typescript--javascript-ts-ls][Typescript & Javascript (ts-ls)]]
   - [[#shell-scripting-lsp-bash][Shell Scripting (lsp-bash)]]
   - [[#haskell-hls][Haskell (HLS)]]
+  - [[#cc][C/C++]]
 
 * Install Doom Emacs
 1. Install ~GNU/Emacs~
@@ -402,20 +403,20 @@ M-x doom/reload
 ** Haskell (HLS)
 1. Install ghcup and HLS (Haskell-Language-Server):
    - NOTE: When it asks to install HSL, confirm it.
-   #+begin_src shell
-curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
-   #+end_src
+      #+begin_src shell
+   curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+      #+end_src
 
    + Add ghcup to your shell PATH. For fish shell:
-   #+begin_src shell
-fish_add_path $HOME/.ghcup/bin
-   #+end_src
+      #+begin_src shell
+   fish_add_path $HOME/.ghcup/bin
+      #+end_src
 
    + Add ghcup to doom emacs PATH (It's better to write the full path with ~/home/USER/~):
-   #+begin_src emacs-lisp
-(setenv "PATH" (concat (getenv "PATH") ":~/.ghcup/bin"))
-(setq exec-path (append exec-path '("~/.ghcup/bin")))
-   #+end_src
+      #+begin_src emacs-lisp
+   (setenv "PATH" (concat (getenv "PATH") ":~/.ghcup/bin"))
+   (setq exec-path (append exec-path '("~/.ghcup/bin")))
+      #+end_src
 
 2. Uncomment this line in ~.doom.d/init.el~:
    #+begin_src emacs-lisp
@@ -441,6 +442,44 @@ fish_add_path $HOME/.ghcup/bin
    #+end_src
 
 5. then reload doom emacs:
+   #+begin_src emacs-lisp
+M-x doom/reload RET
+   #+end_src
+
+** C/C++
+1. Install ~ccls~ (C/C++ language-server).
+   #+begin_src shell
+sudo pacman -S ccls
+   #+end_src
+
+2. Install ~ccls~ package for doom emacs. Add this line to ~.doom.d/packages.el~.
+   #+begin_src emacs-lisp
+(package! ccls)
+   #+end_src
+
+3. Configure doom emacs to use ~ccls~ in ~c-mode~ and ~cpp-mode~. Add these lines to ~.doom.d/config.el~.
+   #+begin_src emacs-lisp
+
+;; C
+(use-package c-mode
+  :ensure t
+  :hook (c-mode . (lambda ()
+                    (require 'ccls)
+                    (setq ccls-executable "/usr/bin/env ccls")
+                    (tree-sitter-mode)
+                    (lsp))))
+
+;; Cpp
+(use-package cpp-mode
+  :ensure t
+  :hook (cpp-mode . (lambda ()
+                      (require 'ccls)
+                      (setq ccls-executable "/usr/bin/env ccls")
+                      (tree-sitter-mode)
+                      (lsp))))
+   #+end_src
+
+4. Reload doom emacs to changes take effect.
    #+begin_src emacs-lisp
 M-x doom/reload RET
    #+end_src

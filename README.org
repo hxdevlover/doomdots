@@ -40,7 +40,7 @@ fish_add_path $HOME/.emacs.d/bin
    #+end_src
    + If you added ~$HOME/.emacs.d/bin~ to your shell PATH, just run ~doom sync~.
 
-4. Create a ~emacsclient.desktop~ file in ~/usr/share/applications/~ to be able to launch emacs client through a graphical menu or environment:
+4. (OPTIONSL STEP) Create a ~emacsclient.desktop~ file in ~/usr/share/applications/~ to be able to launch emacs client through a graphical menu or environment:
    #+begin_src shell
 sudo touch /usr/share/applications/emacsclient.desktop
    #+end_src

@@ -50,7 +50,7 @@ sudo touch /usr/share/applications/emacsclient.desktop
 sudo vim /usr/share/applications/emacsclient.desktop
      #+end_src
 
-   + Add these lines to that:
+   + Add these lines to that (If it already exist, clear it):
      #+begin_src shell
 [Desktop Entry]
 Name=EmacsClient

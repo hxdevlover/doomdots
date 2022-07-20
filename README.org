@@ -357,6 +357,7 @@ M-x lsp-install-server RET ts-ls RET
   :config
   (setq typescript-indent-level 2)
   :hook (typescript-mode . (lambda ()
+                             (require 'ts-ls)
                              (tree-sitter-mode) ;; Enable tree-sitter for python. Comment this line if you don't use it.
                              (lsp))))
    #+end_src

@@ -182,7 +182,7 @@ M-x doom/reload RET
 (use-package lsp-pyright
   :ensure t
   :config
-  (setq lsp-pyright-python-path (concat (getenv "HOME") "/anaconda3/bin"))
+  (setq lsp-pyright-python-path (concat (getenv "HOME") "/anaconda3/bin/python3"))
   (setq lsp-pyright-auto-search-paths t)
   (setq lsp-pyright-use-library-code-for-types t)
   (setq lsp-pyright-stub-path (concat (getenv "HOME") "/anaconda3/lib/python3.9/site-packages/mypy/typeshed/stubs"))

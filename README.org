@@ -452,7 +452,6 @@ sudo pacman -S ccls
 
 ;; C
 (use-package c-mode
-  :ensure t
   :hook (c-mode . (lambda ()
                     (require 'ccls)
                     (setq ccls-executable "/usr/bin/env ccls")
@@ -461,7 +460,6 @@ sudo pacman -S ccls
 
 ;; Cpp
 (use-package cpp-mode
-  :ensure t
   :hook (cpp-mode . (lambda ()
                       (require 'ccls)
                       (setq ccls-executable "/usr/bin/env ccls")

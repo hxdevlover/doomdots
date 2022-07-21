@@ -446,28 +446,23 @@ sudo pacman -S ccls
    #+begin_src emacs-lisp
 (package! ccls)
    #+end_src
-
-3. Configure doom emacs to use ~ccls~ in ~c-mode~ and ~cpp-mode~. Add these lines to ~.doom.d/config.el~.
+3. Uncomment this line in ~.doom.d/init.el~.
    #+begin_src emacs-lisp
-
-;; C
-(use-package c-mode
-  :hook (c-mode . (lambda ()
-                    (require 'ccls)
-                    (setq ccls-executable "/usr/bin/env ccls")
-                    (tree-sitter-mode)
-                    (lsp))))
-
-;; Cpp
-(use-package cpp-mode
-  :hook (cpp-mode . (lambda ()
-                      (require 'ccls)
-                      (setq ccls-executable "/usr/bin/env ccls")
-                      (tree-sitter-mode)
-                      (lsp))))
+;;(cc +lsp)
+   #+end_src
+   
+4. Configure doom emacs to use ~ccls~ in ~c-mode~ and ~cpp-mode~. Add these lines to ~.doom.d/config.el~.
+   #+begin_src emacs-lisp
+;; C/C++
+(use-package ccls
+  :ensure t
+  :hook (c-mode cpp-mode) . (lambda()
+                             (require 'ccls)
+                             (setq ccls-executable "/usr/bin/ccls")
+                             (lsp)))
    #+end_src
 
-4. Reload doom emacs to changes take effect.
+5. Reload doom emacs to changes take effect.
    #+begin_src emacs-lisp
 M-x doom/reload RET
    #+end_src
